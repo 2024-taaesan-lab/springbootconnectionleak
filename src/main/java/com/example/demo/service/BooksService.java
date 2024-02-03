@@ -44,5 +44,28 @@ public class BooksService {
 	  }
 	  return avgPrice;
   }
+
+  public Double getAvgBad() {
+	  try{
+	  	Connection conn1 = datasource.getConnection();
+		System.out.println("Schema name is "+conn1.getSchema());
+	  } catch (SQLException e1) {
+		e1.printStackTrace();
+	  }
+	  
+	  Double avgPrice = null;
+	  try {
+		Connection conn = datasource.getConnection();
+		Statement stmt = conn.createStatement();
+		String sql = "select avg(book_price) avg from books";
+		ResultSet rst = stmt.executeQuery(sql);
+		while(rst.next()) {
+			avgPrice = rst.getDouble(1);
+		}
+	  } catch (SQLException e) {
+		e.printStackTrace();
+	  }
+	  return avgPrice;
+  }
   
 }

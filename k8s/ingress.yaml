@@ -6,11 +6,11 @@ spec:
   rules:
   - http:
       paths:
-      - path: /book-service
+      - path: /api
         pathType: Prefix
         backend:
           service:
             name: springboot-connection-leak-service
             port:
-              number: 80
+              number: 8080
   ingressClassName: nginx

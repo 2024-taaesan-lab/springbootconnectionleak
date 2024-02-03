@@ -7,12 +7,12 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 20Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
     path: "/mnt/data"
----
+--- 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -23,4 +23,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 2Gi

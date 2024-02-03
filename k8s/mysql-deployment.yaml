@@ -26,9 +26,14 @@ spec:
         - containerPort: 3306
           name: mysql
         volumeMounts:
+        - name: mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
       volumes:
+      - name: mysql-initdb
+        configMap:
+          name: mysql-initdb-config
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
@@ -42,3 +47,20 @@ spec:
   - port: 3306
   selector:
     app: mysql
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS demo;
+    USE demo;
+    CREATE TABLE books(bookid smallint, bookname varchar(50), bookprice float(10,2), bookqty smallint);
+    INSERT INTO books values(1,'BookA',9.99,19);
+    INSERT INTO books values(2,'BookB',19.99,2);
+    INSERT INTO books values(3,'BookC',0.99,5);
+    INSERT INTO books values(4,'BookD',9.99,10);
+    INSERT INTO books values(5,'BookE',2.99,100);
+    INSERT INTO books values(6,'BookF',1.99,15);

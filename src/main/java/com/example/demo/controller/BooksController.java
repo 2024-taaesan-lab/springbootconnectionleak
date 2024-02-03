@@ -26,9 +26,16 @@ public class BooksController {
 	}
 	
 	//Get All items
-	@GetMapping(value= {"/getAvg"})
+	@GetMapping(value= {"/avg-good"})
 	public Double getAvg(){
 		Double avg = its.getAvg();
+		System.out.println("Getall: avg price "+avg);
+		return avg;
+	}
+
+	@GetMapping(value= {"/avg-bad"})
+	public Double getAvgBad(){
+		Double avg = its.getAvgBad();
 		System.out.println("Getall: avg price "+avg);
 		return avg;
 	}

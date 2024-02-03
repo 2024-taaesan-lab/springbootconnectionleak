@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springboot-connection-leak
-          image: taaesan/app-db-leak
+          image: taaesan/app-db-leak:latest
           ports:
             - containerPort: 8080
 ---
@@ -27,5 +27,5 @@ spec:
   selector:
     component: springboot-connection-leak
   ports:
-    - port: 80
+    - port: 8080
       targetPort: 8080
