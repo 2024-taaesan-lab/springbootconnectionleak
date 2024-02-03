@@ -1,0 +1,9 @@
+
+###
+GET http://localhost/book-service/api/books
+Content-Type: application/json
+
+
+###
+GET http://localhost/book-service/api/getAvg
+Content-Type: application/json
