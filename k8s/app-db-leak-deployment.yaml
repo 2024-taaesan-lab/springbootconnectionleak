@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-connection-leak-deployment
+  name: app-db-leak-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: springboot-connection-leak
+      component: app-db-leak
   template:
     metadata:
       labels:
-        component: springboot-connection-leak
+        component: app-db-leak
     spec:
       containers:
-        - name: springboot-connection-leak
+        - name: app-db-leak
           image: taaesan/app-db-leak:latest
           ports:
             - containerPort: 8080
@@ -21,11 +21,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-connection-leak-service
+  name: app-db-leak-service
 spec:
   type: ClusterIP
   selector:
-    component: springboot-connection-leak
+    component: app-db-leak
   ports:
     - port: 8080
       targetPort: 8080
